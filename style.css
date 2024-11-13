@@ -1,0 +1,112 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Estilo del selector */
+#eleccionGasolinera {
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #0066cc;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #0066cc;
+    margin-bottom: 20px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#eleccionGasolinera:focus {
+    border-color: #004999;
+}
+
+/* Contenedor principal */
+#contenedorPrincipal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* Tarjeta de gasolinera */
+.gasolinera {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    width: 100%;
+    max-width: 320px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 5px solid #0066cc;
+}
+
+.gasolinera:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Texto de cada tarjeta */
+.gasolinera p {
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+    padding: 4px 0;
+}
+
+.gasolinera p:first-child {
+    font-weight: bold;
+    color: #0066cc;
+}
+
+/* Estilo de la lista de combustibles */
+.gasolinera ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 8px;
+}
+
+.gasolinera ul li {
+    font-size: 0.9rem;
+    color: #666;
+    background-color: #f0f8ff;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    transition: background-color 0.3s;
+}
+
+.gasolinera ul li:hover {
+    background-color: #e0f7fa;
+}
+
+/* Adaptabilidad a dispositivos móviles */
+@media (max-width: 768px) {
+    #eleccionGasolinera {
+        font-size: 0.9rem;
+    }
+
+    .gasolinera p, .gasolinera ul li {
+        font-size: 0.85rem;
+    }
+
+    .gasolinera {
+        max-width: 100%;
+    }
+}
