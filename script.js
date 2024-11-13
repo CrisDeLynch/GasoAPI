@@ -8,25 +8,18 @@ function mostrarCarga() {
 function elegirProvincia() {
     let id = idGasolinera.value;
     mostrarCarga();
-    // Crear una instancia de XMLHttpRequest
+  
     var xhr = new XMLHttpRequest();
-
-    // Configurar la solicitud: método, URL y si es asincrónica (true)
     xhr.open('GET', `https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/FiltroMunicipio/${id}`, true);
-
-    // Definir una función que se ejecutará cuando cambie el estado de la solicitud
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) { // 4 significa "completado", 200 es "OK"
-            // La respuesta del servidor se encuentra en xhr.responseText
-            var data = JSON.parse(xhr.responseText); // Convertir JSON en objeto de JavaScript
+        if (xhr.readyState === 4 && xhr.status === 200) { 
+            var data = JSON.parse(xhr.responseText); 
             console.log(data);
             setTimeout(() => {
                 mostrarGasolineras(data.ListaEESSPrecio);
             }, 2000); 
         }
     };
-
-    // Enviar la solicitud
     xhr.send();
 }
 
@@ -34,14 +27,10 @@ function elegirProvincia() {
 function mostrarGasolineras(gasolineras) {
     contenedorPrincipal.innerHTML = '';
 
+    gasolineras.sort((a, b) => a.Rótulo.localeCompare(b.Rótulo));
+  
     gasolineras.forEach(gasolinera => {
-
-        gasolineras.sort((a, b) => {
-            if (a.Rótulo < b.Rótulo) return -1;
-            if (a.Rótulo > b.Rótulo) return 1;
-            return 0;
-        });    
-
+      
         let contenedorIndividual = document.createElement("div");
         contenedorIndividual.classList.add("gasolinera");
 
@@ -83,5 +72,10 @@ function mostrarGasolineras(gasolineras) {
 }
 
 idGasolinera.addEventListener('change', elegirProvincia);
+
+
+// Cáceres https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/MunicipiosPorProvincia/10`
+// Badajoz https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/Listados/MunicipiosPorProvincia/6`
+
 
 
